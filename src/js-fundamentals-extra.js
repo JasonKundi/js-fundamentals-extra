@@ -7,7 +7,9 @@
 // with a reference to your function.
 //
 // TODO: write code below
-
+function secondsInHours (hours) {
+  return (hours * 3600)
+}
 
 
 // MilesTravelled
@@ -22,7 +24,10 @@
 // with a reference to your function.
 //
 // TODO: write code below
-
+function milesTravelled (speed, minutes) {
+  const hoursTravelled = minutes/60
+  return Math.ceil(speed*hoursTravelled)
+}
 
 
 // KilometersToMiles
@@ -36,6 +41,10 @@
 // with a reference to your function.
 //
 // TODO: write code below
+function kilometersToMiles(kilometers) {
+  const miles = kilometers / 1.6
+  return Math.round(miles)
+}
 
 
 
@@ -52,6 +61,24 @@
 // with a reference to your function.
 //
 // TODO: write code below
+function makeSentence (string) {
+ // let capitalLetter = string.charAt(0).toUppercase()
+// 
+//   const lastCharacter = string.CharAt(string.length-1)
+ // if (lastCharacter !== '.') {
+  //  return capitalLetter + string.subtring(1) + '.'
+//  } 
+//}
+const punctuation = ['.', '!', '?']
+
+const sentence = string[0].toUpperCase() + string.substring(1)
+if (punctuation.includes(string[string.length-1])) {
+  return sentence 
+}
+else {
+return sentence + '.'
+}
+}
 
 
 
@@ -67,7 +94,22 @@
 //
 // TODO: write code below
 
-
+/*function fileExtension(fileName){
+  const dot = '.'
+  const extension = fileName.substring(fileName.length - 3)
+  if (!fileName.includes(dot)) {
+    return extension
+  }
+  return ''
+}
+*/
+function fileExtension(fileName){
+  const extensionPre = '.'
+  if (!fileName.includes(extensionPre)) {
+    return ''
+  }
+  return fileName.substring(fileName.lastIndexOf(extensionPre)+1)
+}
 
 // Range
 //
@@ -79,6 +121,11 @@
 // with a reference to your function.
 //
 // TODO: write code below
+function range(numbers) {
+  let highest = Math.max(...numbers)
+  let lowest = Math.min (...numbers)
+  return highest - lowest
+}
 
 
 
@@ -98,6 +145,18 @@
 // with a reference to your function.
 //
 // TODO: write code below
+function checkTransactions(transactions, balance, overdraft) {
+  for (let i=0; i<transactions.length; i++) {
+    const transaction = transactions[i]
+
+    balance = balance + transaction
+
+    if (balance<-overdraft){
+      return false
+    }
+  }
+  return true
+}
 
 
 
@@ -114,31 +173,48 @@
 //
 // TODO: write code below
 
+function filmsInGenre(films, genre) {
+  const names = []
+  
+  for (let i=0; i<films.length; i++) {
+    
+    const film = films[i]
+    for (let j=0; j<film.genres.length;j++) {
+      const filmGenre = film.genres[j]
+      if (filmGenre===genre) {
+        names.push(film.name)
+      }
+    }
+  }
+  return names
+}
+
+
 
 
 // TODO: change undefined to be the name of the functions you defined
 module.exports = {
   //SecondsInHours
-  a: undefined,
+  a: secondsInHours,
 
   //MilesTravelled,
-  b: undefined,  
+  b: milesTravelled,  
 
   //KilometersToMiles,
-  c: undefined, 
+  c: kilometersToMiles, 
 
   //MakeSentence
-  d: undefined, 
+  d: makeSentence, 
 
   //FileExtension
-  e: undefined,
+  e: fileExtension,
 
   //Range
-  f: undefined,
+  f: range,
 
   //CheckTransactions
-  g: undefined,
+  g: checkTransactions,
 
   //FilmsInGenre
-  h: undefined,
+  h: filmsInGenre,
 }
